@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerControlsManager: {fileID: 1093572774491329970}
   unitManager: {fileID: 7500081023881312976}
+  uiManager: {fileID: 0}
 --- !u!1 &5169010822322917148
 GameObject:
   m_ObjectHideFlags: 0

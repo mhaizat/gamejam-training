@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManagerHub : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class ManagerHub : MonoBehaviour
 
     [SerializeField] private PlayerControlsManager playerControlsManager;
     [SerializeField] private UnitManager unitManager;
+    [SerializeField] private UIManager uiManager;
 
     public PlayerControlsManager GetPlayerControlsManager() { return playerControlsManager; }
     public UnitManager GetUnitManager() { return unitManager; }
+
+    public UIManager GetUIManager() {  return uiManager; }
 
     void Awake()
     {
@@ -21,5 +25,9 @@ public class ManagerHub : MonoBehaviour
         }
 
         Instance = this;
+
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
+
+    public void SetUIManager(UIManager manager)=> uiManager = manager;
 }
