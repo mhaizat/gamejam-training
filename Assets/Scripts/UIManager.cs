@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    private void Awake()
+    [SerializeField] private UIPanelController _mainMenuPanel;
+    [SerializeField] private UIPanelController _settingPanel;
+
+    private void Start()
     {
         ManagerHub.Instance.SetUIManager(this);
+
+        _mainMenuPanel.SetPanelActive(true);
     }
 }
