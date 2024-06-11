@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private UIPanelController _mainMenuPanel;
-    [SerializeField] private UIPanelController _settingPanel;
+    #region variables
+    [SerializeField] private InterfaceSO _interfaceSO;
+
+    [Header("UI Panel Controller")]
+    [SerializeField] private UIPanelController mainMenuPanel;
+    [SerializeField] private UIPanelController settingPanel;
+    [SerializeField] private UIPanelController gamePanel;
+    [SerializeField] private UIPanelController popupPanel;
+    [SerializeField] private UIPanelController pausePanel;
+    #endregion
+
 
     private void Start()
     {
@@ -16,8 +26,11 @@ public class UIManager : MonoBehaviour
 
     public void OnInitialized()
     {
-        _mainMenuPanel.SetPanelActive(true);
+        mainMenuPanel.SetPanelActive(true);
 
-        _settingPanel.SetPanelActive(false);
+        settingPanel.SetPanelActive(false);
+        gamePanel.SetPanelActive(false);
+        popupPanel.SetPanelActive(false);
+        pausePanel.SetPanelActive(false);
     }
 }
