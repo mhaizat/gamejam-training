@@ -25,8 +25,11 @@ public class ManagerHub : MonoBehaviour
         }
 
         Instance = this;
+    }
 
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+    private void Start()
+    {
+        GameInstance.Instance.LoadUIScene();
     }
 
     public void SetUIManager(UIManager manager)=> uiManager = manager;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameInstance : MonoBehaviour
 {
@@ -20,5 +21,10 @@ public class GameInstance : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+
+    public void LoadUIScene()
+    {
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 }

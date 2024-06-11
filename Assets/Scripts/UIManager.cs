@@ -11,6 +11,13 @@ public class UIManager : MonoBehaviour
     {
         ManagerHub.Instance.SetUIManager(this);
 
+        OnInitialized();
+    }
+
+    public void OnInitialized()
+    {
         _mainMenuPanel.SetPanelActive(true);
+
+        _settingPanel.SetPanelActive(false);
     }
 }
