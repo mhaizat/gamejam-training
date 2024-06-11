@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameInstance : MonoBehaviour
 {
+    #region Instance
     private static GameInstance _instance;
     public static GameInstance Instance
     {
@@ -17,6 +18,9 @@ public class GameInstance : MonoBehaviour
             return _instance;
         }
     }
+    #endregion
+
+    [SerializeField] private InterfaceSO interfaceSO;
 
     private void Awake()
     {

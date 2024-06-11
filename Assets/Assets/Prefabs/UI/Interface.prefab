@@ -7512,7 +7512,7 @@ GameObject:
   - component: {fileID: 2447449146913573518}
   - component: {fileID: 6541375276380461640}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Text-Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17799,7 +17799,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7269975015996617130}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -19099,8 +19099,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da84bcb745ca0ab439dce0dd0cbabbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenuPanel: {fileID: 3927471773573467278}
-  _settingPanel: {fileID: 710265023124487563}
+  _interfaceSO: {fileID: 11400000, guid: a466062aadca8a54191d6a36c178df0a, type: 2}
+  mainMenuPanel: {fileID: 3927471773573467278}
+  settingPanel: {fileID: 710265023124487563}
+  gamePanel: {fileID: 2062404976138268870}
+  popupPanel: {fileID: 4821332630420068672}
+  pausePanel: {fileID: 185390392017921599}
 --- !u!1 &7824648311319661597
 GameObject:
   m_ObjectHideFlags: 0
