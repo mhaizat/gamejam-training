@@ -8,11 +8,11 @@ public class GridManager : MonoBehaviour
 {
     [SerializeField] private GameObject testPathTile;
 
-    public int width = 16;
-    public int height = 8;
-    public int minPathLength = 30;
+    [SerializeField] private int width = 16;
+    [SerializeField] private int height = 8;
+    [SerializeField] private int minPathLength = 30;
 
-    public PathGenerator pathGenerator;
+    private PathGenerator pathGenerator;
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public class PathGenerator
+    private class PathGenerator
     {
         private int gridWidth, gridHeight;
 
