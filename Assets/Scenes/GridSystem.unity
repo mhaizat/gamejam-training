@@ -249,6 +249,7 @@ MonoBehaviour:
   testPathTile: {fileID: 9113889905255880788, guid: 987530dee32613f448159293e1ed7503, type: 3}
   width: 16
   height: 8
+  minPathLength: 32
 --- !u!4 &1383181557
 Transform:
   m_ObjectHideFlags: 0
