@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private GameObject testPathTile;
+    [SerializeField] private GameObject testEnemy;
 
     [SerializeField] private int width = 16;
     [SerializeField] private int height = 8;
     [SerializeField] private int minPathLength = 30;
 
     private PathGenerator pathGenerator;
+
+    public List<Vector2Int> pathList;
+
+    public List<Vector2Int> GetPathList() { return pathList; }
 
     void Start()
     {
@@ -32,13 +35,15 @@ public class GridManager : MonoBehaviour
         {
             Instantiate(testPathTile, new Vector3(pathcell.x, 0, pathcell.y), Quaternion.identity);
         }
+
+        pathList = pathGenerator.pathCells;
     }
 
     private class PathGenerator
     {
         private int gridWidth, gridHeight;
 
-        private List<Vector2Int> pathCells;
+        public List<Vector2Int> pathCells;
 
         public PathGenerator(int width, int height)
         {
@@ -57,26 +62,26 @@ public class GridManager : MonoBehaviour
             {
                 pathCells.Add(new Vector2Int(x, y));
 
-                bool validMove = false;
+                bool validPath = false;
 
-                while (!validMove)
+                while (!validPath)
                 {
                     int move = Random.Range(0, 3);
 
                     if (move == 0 || x % 2 == 0 || x > (gridWidth - 2))
                     {
                         x++;
-                        validMove = true;
+                        validPath = true;
                     }
                     else if (move == 1 && CellIsFree(x, y + 1) && y < (gridHeight - 2))
                     {
                         y++;
-                        validMove = true;
+                        validPath = true;
                     }
                     else if (move == 2 && CellIsFree(x, y - 1) && y > 2)
                     {
                         y--;
-                        validMove = true;
+                        validPath = true;
                     }
                 }
             }

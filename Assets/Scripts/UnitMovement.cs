@@ -1,34 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class UnitMovement : MonoBehaviour
 {
-    NavMeshAgent agent;
-    [SerializeField] private LayerMask ground;
+    private int currentPathIndex;
+    private float tolerance = 0.01f;
 
-    void Start()
+    private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        StartCoroutine(FollowPathCoroutine(ManagerHub.Instance.GetGridManager().GetPathList()));
     }
-
-    private void Update()
+    private IEnumerator FollowPathCoroutine(List<Vector2Int> pathList)
     {
-        MoveUnit();   
-    }
-
-    void MoveUnit()
-    {
-        if (ManagerHub.Instance.GetPlayerControlsManager().GetMouseLeftClick() == 1)
+        while (currentPathIndex < pathList.Count)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 targetPosition = new Vector3(pathList[currentPathIndex].x, transform.position.y, pathList[currentPathIndex].y);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
+            while (Vector3.Distance(transform.position, targetPosition) > tolerance)
             {
-                agent.SetDestination(hit.point);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5.0f * Time.deltaTime);
+                yield return null;
             }
+
+            currentPathIndex++;
         }
     }
 }
