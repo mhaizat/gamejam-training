@@ -1,45 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBehavior : MonoBehaviour
 {
     private EnemyBehaviorScriptableObject enemyBehavior;
-
-    public Mesh enemyMeshFilter;
 
     [SerializeField] private LayerMask ground;
 
     private int currentPathIndex;
     private float tolerance = 0.01f;
 
-    public string name;
+    public string enemyName;
     public float health;
     public float defense;
     public float walkSpeed;
 
+    [SerializeField] private Slider healthBar;
+
     void Start()
     {
-        name = enemyBehavior.enemyName;
+        enemyName = enemyBehavior.enemyName;
         health = enemyBehavior.enemyHealth;
         defense = enemyBehavior.enemyDefense;
         walkSpeed = enemyBehavior.enemyWalkSpeed;
 
-        enemyMeshFilter = GetComponent<Mesh>();
-        enemyMeshFilter = enemyBehavior.enemyMeshFilter;
+        SetMaxHealth(health);
 
-        AddUnitToList();
         StartCoroutine(FollowPathCoroutine(ManagerHub.Instance.GetGridManager().GetPathList()));
     }
 
-    void AddUnitToList()
+    void SetMaxHealth(float maxHealth)
     {
-        ManagerHub.Instance.GetUnitManager().AddUnitToList(this);
-    }
-
-    private void OnDestroy()
-    {
-        ManagerHub.Instance.GetUnitManager().RemoveUnitFromList(this);
+        healthBar.maxValue = maxHealth;
+        healthBar.value = maxHealth;
     }
 
     private IEnumerator FollowPathCoroutine(List<Vector2Int> pathList)

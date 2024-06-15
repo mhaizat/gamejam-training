@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControlsManager: {fileID: 1093572774491329970}
-  unitManager: {fileID: 7500081023881312976}
+  enemyPoolManager: {fileID: 7500081023881312976}
   uiManager: {fileID: 0}
   gridManager: {fileID: 9017635139687793661}
 --- !u!114 &3847746301745639302
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 5792246317923208045}
   - component: {fileID: 7500081023881312976}
   m_Layer: 0
-  m_Name: UnitManager
+  m_Name: EnemyPoolManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,8 +153,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4261d99ae091fab42921b45ba5781893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitList: []
-  unitSelectedList: []
+  pools:
+  - tag: Cube
+    prefab: {fileID: 2497308199678852433, guid: 23799801830e6254d9cfe711011feaa6, type: 3}
+    size: 20
+  - tag: Sphere
+    prefab: {fileID: 1744183345665058458, guid: 2bedbc6fbed9859448e6c271e1282e03, type: 3}
+    size: 20
 --- !u!1 &8498953919775913973
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testPathTile: {fileID: 9113889905255880788, guid: 987530dee32613f448159293e1ed7503, type: 3}
+  testEnemy: {fileID: 0}
   width: 16
   height: 8
   minPathLength: 30
+  pathList: []
