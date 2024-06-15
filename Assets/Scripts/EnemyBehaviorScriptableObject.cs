@@ -9,7 +9,6 @@ public class EnemyBehaviorScriptableObject : ScriptableObject
 
     public string enemyName;
     
-    public float enemyWalkSpeed;
     public float enemyHealth;
     public float enemyDefense;
 }

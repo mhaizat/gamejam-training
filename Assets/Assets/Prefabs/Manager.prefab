@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3261658618923830483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7525091145285795678}
+  - component: {fileID: 766854388323156661}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7525091145285795678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261658618923830483}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4149774467914965525}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &766854388323156661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261658618923830483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c07ef37fddddd541b972117a71f076d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPoolManager: {fileID: 0}
+  managerHub: {fileID: 0}
 --- !u!1 &3404893037742099394
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +80,7 @@ Transform:
   - {fileID: 4504688232611001318}
   - {fileID: 5792246317923208045}
   - {fileID: 2719609494965092275}
+  - {fileID: 7525091145285795678}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5297635645929023204
@@ -52,6 +99,7 @@ MonoBehaviour:
   enemyPoolManager: {fileID: 7500081023881312976}
   uiManager: {fileID: 0}
   gridManager: {fileID: 9017635139687793661}
+  waveManager: {fileID: 766854388323156661}
 --- !u!114 &3847746301745639302
 MonoBehaviour:
   m_ObjectHideFlags: 0

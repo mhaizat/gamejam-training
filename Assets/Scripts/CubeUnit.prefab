@@ -121,13 +121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a033d7959d5c7d54faf419c6199e4d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBehavior: {fileID: 11400000, guid: 16e81dae208c95d44adf09f4398b7e80, type: 2}
   ground:
     serializedVersion: 2
     m_Bits: 8
   enemyName: 
   health: 0
   defense: 0
-  walkSpeed: 0
   healthBar: {fileID: 6926053764915317119}
 --- !u!1001 &5814902139300271381
 PrefabInstance:

@@ -51,6 +51,7 @@ public class EnemyPoolManager : MonoBehaviour
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
+        //! NOTE(Haizat): this needs to be moved to when the enemy is dead or completed a lap of the path
         poolDictionary[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;

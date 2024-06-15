@@ -11,6 +11,10 @@ public class ManagerHub : MonoBehaviour
     [SerializeField] private EnemyPoolManager enemyPoolManager;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private GridManager gridManager;
+    [SerializeField] private WaveManager waveManager;
+
+
+    public WaveManager GetWaveManager() { return waveManager; }
     public PlayerControlsManager GetPlayerControlsManager() { return playerControlsManager; }
     public EnemyPoolManager GetEnemyPoolManager() { return enemyPoolManager; }
 

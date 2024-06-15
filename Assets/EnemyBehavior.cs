@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    private EnemyBehaviorScriptableObject enemyBehavior;
+    [SerializeField] private EnemyBehaviorScriptableObject enemyBehavior;
 
     [SerializeField] private LayerMask ground;
 
@@ -15,7 +15,6 @@ public class EnemyBehavior : MonoBehaviour
     public string enemyName;
     public float health;
     public float defense;
-    public float walkSpeed;
 
     [SerializeField] private Slider healthBar;
 
@@ -24,11 +23,18 @@ public class EnemyBehavior : MonoBehaviour
         enemyName = enemyBehavior.enemyName;
         health = enemyBehavior.enemyHealth;
         defense = enemyBehavior.enemyDefense;
-        walkSpeed = enemyBehavior.enemyWalkSpeed;
 
         SetMaxHealth(health);
+    }
 
+    private void OnEnable()
+    {
         StartCoroutine(FollowPathCoroutine(ManagerHub.Instance.GetGridManager().GetPathList()));
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(FollowPathCoroutine(ManagerHub.Instance.GetGridManager().GetPathList()));
     }
 
     void SetMaxHealth(float maxHealth)
@@ -39,13 +45,13 @@ public class EnemyBehavior : MonoBehaviour
 
     private IEnumerator FollowPathCoroutine(List<Vector2Int> pathList)
     {
-        while (currentPathIndex < pathList.Count)
+        while (currentPathIndex < pathList.Count || gameObject.activeInHierarchy)
         {
             Vector3 pathPosition = new Vector3(pathList[currentPathIndex].x, transform.position.y, pathList[currentPathIndex].y);
 
             while (Vector3.Distance(transform.position, pathPosition) > tolerance)
             {
-                transform.position = Vector3.MoveTowards(transform.position, pathPosition, walkSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, pathPosition, 1.0f * Time.deltaTime);
                 yield return null;
             }
 
