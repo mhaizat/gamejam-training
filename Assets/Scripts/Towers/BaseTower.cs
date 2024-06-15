@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseTower : MonoBehaviour
+public class BaseTower : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private StatsSO towerStat;
