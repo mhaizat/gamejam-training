@@ -15,11 +15,11 @@ public class UnitMovement : MonoBehaviour
     {
         while (currentPathIndex < pathList.Count)
         {
-            Vector3 targetPosition = new Vector3(pathList[currentPathIndex].x, transform.position.y, pathList[currentPathIndex].y);
+            Vector3 pathPosition = new Vector3(pathList[currentPathIndex].x, transform.position.y, pathList[currentPathIndex].y);
 
-            while (Vector3.Distance(transform.position, targetPosition) > tolerance)
+            while (Vector3.Distance(transform.position, pathPosition) > tolerance)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5.0f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, pathPosition, 5.0f * Time.deltaTime);
                 yield return null;
             }
 
