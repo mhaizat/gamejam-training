@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
-    [SerializeField] private List<Unit> unitList = new List<Unit>();
+    [SerializeField] private List<EnemyBehavior> unitList = new List<EnemyBehavior>();
 
-    [SerializeField] private List<Unit> unitSelectedList = new List<Unit>();
+    [SerializeField] private List<EnemyBehavior> unitSelectedList = new List<EnemyBehavior>();
 
-    //! set up the current selected unit or group of units?
-    //! 
-
-    private void Awake()
+    public void AddUnitToList(EnemyBehavior enemyBehavior)
     {
+        unitList.Add(enemyBehavior);
+        unitSelectedList.Add(enemyBehavior);
     }
 
-    public void AddUnitToList(Unit unit)
+    public void RemoveUnitFromList(EnemyBehavior enemyBehavior)
     {
-        unitList.Add(unit);
-        unitSelectedList.Add(unit);
+        unitList.Remove(enemyBehavior);
+        unitSelectedList.Remove(enemyBehavior);
     }
 
-    public void RemoveUnitFromList(Unit unit)
-    {
-        unitList.Remove(unit);
-        unitSelectedList.Remove(unit);
-    }
-
-    public List<Unit> GetUnitList() { return unitList; }
-    public List<Unit> GetUnitSelectedList() { return unitSelectedList; }
+    public List<EnemyBehavior> GetUnitList() { return unitList; }
+    public List<EnemyBehavior> GetUnitSelectedList() { return unitSelectedList; }
 }
