@@ -17,6 +17,10 @@ public class GridManager : MonoBehaviour
 
     public List<Vector2Int> GetPathList() { return pathList; }
 
+    private GameObject firstTile;
+
+    public GameObject GetFirstTile() { return firstTile; }
+
     void Start()
     {
         pathGenerator = new PathGenerator(width, height);
@@ -33,7 +37,9 @@ public class GridManager : MonoBehaviour
 
         foreach (Vector2Int pathcell in pathCells)
         {
-            Instantiate(testPathTile, new Vector3(pathcell.x, 0, pathcell.y), Quaternion.identity);
+            GameObject objectTile = Instantiate(testPathTile, new Vector3(pathcell.x, 0, pathcell.y), Quaternion.identity);
+            
+            if (firstTile == null) firstTile = objectTile;
         }
 
         pathList = pathGenerator.pathCells;
