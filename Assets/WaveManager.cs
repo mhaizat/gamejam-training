@@ -10,7 +10,8 @@ public class WaveManager : MonoBehaviour
 
     public Button testButotn;
 
-    int waveLevel;
+    string waveTag;
+
     void Start()
     {
         enemyPoolManager = EnemyPoolManager.Instance;
@@ -23,15 +24,18 @@ public class WaveManager : MonoBehaviour
     //! NOTE(Haizat): this is just a test method to see if the SpawnEnemyMove method works or not
     public void TestVoi()
     {
-        waveLevel = Random.Range(1, 3);
-        StartCoroutine(SpawnEnemyWave());
+        int waveLevel = Random.Range(1, 3);
+        //! NOTE(Haizat): Reset the waveTag string value. why? i dont know bro
+        waveTag = string.Empty;
+        waveTag = EnemyPoolManager.Instance.GetWaveMobByLevel(waveLevel);
+        StartCoroutine(SpawnEnemyWave(waveTag));
     }
 
-    public IEnumerator SpawnEnemyWave()
+    public IEnumerator SpawnEnemyWave(string waveTag)
     {
         for (int i = 0; i < enemyPoolManager.pools[0].size; i++)
         { 
-            enemyPoolManager.SpawnFromPool(EnemyPoolManager.Instance.GetWaveMobByLevel(waveLevel), managerHub.GetGridManager().GetFirstTile().transform.position, managerHub.GetGridManager().GetFirstTile().transform.rotation);
+            enemyPoolManager.SpawnFromPool(waveTag, managerHub.GetGridManager().GetFirstTile().transform.position, managerHub.GetGridManager().GetFirstTile().transform.rotation);
             yield return new WaitForSeconds(1.0f);
         }
     }
