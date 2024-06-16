@@ -10,11 +10,12 @@ public class ManagerHub : MonoBehaviour
     [SerializeField] private PlayerControlsManager playerControlsManager;
     [SerializeField] private UnitManager unitManager;
     [SerializeField] private UIManager uiManager;
-
+    [SerializeField] private GridManager gridManager;
     public PlayerControlsManager GetPlayerControlsManager() { return playerControlsManager; }
     public UnitManager GetUnitManager() { return unitManager; }
 
     public UIManager GetUIManager() {  return uiManager; }
+    public GridManager GetGridManager() { return gridManager; }
 
     void Awake()
     {

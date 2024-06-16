@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    [SerializeField] private LayerMask ground;
+
     void Start()
     {
         AddUnitToList();
     }
-
 
     void AddUnitToList()
     {

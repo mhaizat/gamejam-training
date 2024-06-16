@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 4504688232611001318}
   - {fileID: 5792246317923208045}
+  - {fileID: 2719609494965092275}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5297635645929023204
@@ -50,6 +51,7 @@ MonoBehaviour:
   playerControlsManager: {fileID: 1093572774491329970}
   unitManager: {fileID: 7500081023881312976}
   uiManager: {fileID: 0}
+  gridManager: {fileID: 9017635139687793661}
 --- !u!114 &3847746301745639302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,3 +155,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitList: []
   unitSelectedList: []
+--- !u!1 &8498953919775913973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2719609494965092275}
+  - component: {fileID: 9017635139687793661}
+  m_Layer: 0
+  m_Name: GridManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2719609494965092275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8498953919775913973}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4149774467914965525}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9017635139687793661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8498953919775913973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9573d0331924742a42690c356c46e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testPathTile: {fileID: 9113889905255880788, guid: 987530dee32613f448159293e1ed7503, type: 3}
+  width: 16
+  height: 8
+  minPathLength: 30
