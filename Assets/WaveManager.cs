@@ -16,22 +16,22 @@ public class WaveManager : MonoBehaviour
         enemyPoolManager = EnemyPoolManager.Instance;
         managerHub = ManagerHub.Instance;
 
-        //StartCoroutine(SpawnEnemyWave());
-
+        //! NOTE(Haizat): this is just a test button to see if the SpawnEnemyMove method works or not
         testButotn.onClick.AddListener(TestVoi);
     }
 
+    //! NOTE(Haizat): this is just a test method to see if the SpawnEnemyMove method works or not
     public void TestVoi()
     {
         StartCoroutine(SpawnEnemyWave());
-
     }
 
     public IEnumerator SpawnEnemyWave()
     {
-        //! NOTE(Haizat): reiterate this coroutine until every enemy in the pool is being used
-        enemyPoolManager.SpawnFromPool("Cube", managerHub.GetGridManager().GetFirstTile().transform.position, managerHub.GetGridManager().GetFirstTile().transform.rotation);
-
-        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < enemyPoolManager.pools[0].size; i++)
+        { 
+            enemyPoolManager.SpawnFromPool("Cube", managerHub.GetGridManager().GetFirstTile().transform.position, managerHub.GetGridManager().GetFirstTile().transform.rotation);
+            yield return new WaitForSeconds(1.0f);
+        }
     }
 }

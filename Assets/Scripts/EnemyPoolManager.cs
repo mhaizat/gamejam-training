@@ -17,6 +17,7 @@ public class EnemyPoolManager : MonoBehaviour
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
+    bool canSpawn;
     private void Awake()
     {
         Instance = this;
@@ -43,7 +44,12 @@ public class EnemyPoolManager : MonoBehaviour
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(tag)) return null;
+        canSpawn= true;
+
+        if (!poolDictionary.ContainsKey(tag))
+        {
+            return null;
+        }
 
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
 
