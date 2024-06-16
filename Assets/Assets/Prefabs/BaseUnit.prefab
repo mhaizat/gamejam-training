@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 16543884237218794}
   - component: {fileID: 4546178687910668056}
   - component: {fileID: 4937552259423071127}
-  - component: {fileID: 2841761017673265220}
-  - component: {fileID: 8397145451568803505}
+  - component: {fileID: 6482578126731860078}
+  - component: {fileID: 9222240867928330982}
   m_Layer: 0
   m_Name: BaseUnit
   m_TagString: Untagged
@@ -110,7 +110,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2841761017673265220
+--- !u!114 &6482578126731860078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,24 +119,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 3793823050037863100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dd62b59c6cdcc044bb7e237fe81dfb1, type: 3}
+  m_Script: {fileID: 11500000, guid: a033d7959d5c7d54faf419c6199e4d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8397145451568803505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3793823050037863100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f486b51dec1726b49ae7a2b4ea150627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  enemyMeshFilter: {fileID: 0}
   ground:
     serializedVersion: 2
     m_Bits: 8
+  name: 
+  health: 0
+  defense: 0
+  walkSpeed: 0
+--- !u!64 &9222240867928330982
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793823050037863100}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3818741747151783418
 GameObject:
   m_ObjectHideFlags: 0

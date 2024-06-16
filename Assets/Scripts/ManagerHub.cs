@@ -8,11 +8,15 @@ public class ManagerHub : MonoBehaviour
     public static ManagerHub Instance { get; set; }
 
     [SerializeField] private PlayerControlsManager playerControlsManager;
-    [SerializeField] private UnitManager unitManager;
+    [SerializeField] private EnemyPoolManager enemyPoolManager;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private GridManager gridManager;
+    [SerializeField] private WaveManager waveManager;
+
+
+    public WaveManager GetWaveManager() { return waveManager; }
     public PlayerControlsManager GetPlayerControlsManager() { return playerControlsManager; }
-    public UnitManager GetUnitManager() { return unitManager; }
+    public EnemyPoolManager GetEnemyPoolManager() { return enemyPoolManager; }
 
     public UIManager GetUIManager() {  return uiManager; }
     public GridManager GetGridManager() { return gridManager; }
