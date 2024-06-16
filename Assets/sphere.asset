@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30cf790ada85884fb8e93acb1b05ac0, type: 3}
   m_Name: sphere
   m_EditorClassIdentifier: 
-  enemyMeshRenderer: {fileID: 0}
-  enemyName: 
-  enemyWalkSpeed: 0
-  enemyHealth: 0
-  enemyDefense: 0
+  enemyMeshFilter: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  enemyMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  enemyName: Sphere
+  enemyHealth: 100
+  enemyDefense: 10

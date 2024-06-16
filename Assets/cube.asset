@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30cf790ada85884fb8e93acb1b05ac0, type: 3}
   m_Name: cube
   m_EditorClassIdentifier: 
-  enemyMeshRenderer: {fileID: 0}
-  enemyName: 
-  enemyWalkSpeed: 0
-  enemyHealth: 0
-  enemyDefense: 0
+  enemyMeshFilter: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  enemyMaterial: {fileID: 2100000, guid: 995753f0b2324c244b1e864cbb06047c, type: 2}
+  enemyName: Cube
+  enemyHealth: 150
+  enemyDefense: 12
