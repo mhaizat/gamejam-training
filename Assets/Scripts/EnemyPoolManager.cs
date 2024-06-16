@@ -15,9 +15,8 @@ public class EnemyPoolManager : MonoBehaviour
     }
 
     public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public Dictionary<string, Queue<GameObject>> normalWaveDictionary;
 
-    bool canSpawn;
     private void Awake()
     {
         Instance = this;
@@ -25,7 +24,7 @@ public class EnemyPoolManager : MonoBehaviour
 
     private void Start()
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        normalWaveDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach(Pool pool in pools)
         {
@@ -38,28 +37,47 @@ public class EnemyPoolManager : MonoBehaviour
                 objectPool.Enqueue(_object);
             }
 
-            poolDictionary.Add(pool.tag, objectPool);
+            normalWaveDictionary.Add(pool.tag, objectPool);
         }
     }
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        canSpawn= true;
-
-        if (!poolDictionary.ContainsKey(tag))
+        if (!normalWaveDictionary.ContainsKey(tag))
         {
             return null;
         }
 
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        GameObject objectToSpawn = normalWaveDictionary[tag].Dequeue();
 
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
         //! NOTE(Haizat): this needs to be moved to when the enemy is dead or completed a lap of the path
-        poolDictionary[tag].Enqueue(objectToSpawn);
+        normalWaveDictionary[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
+    }
+
+    public string GetWaveMobByLevel(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                return "Cube";
+            case 2:
+                return "Sphere";
+                
+                //! Can add more levels
+                //!
+                //!
+                //!
+                //!
+
+            default:
+                return null;
+        }
+
     }
 }

@@ -10,7 +10,7 @@ public class WaveManager : MonoBehaviour
 
     public Button testButotn;
 
-
+    int waveLevel;
     void Start()
     {
         enemyPoolManager = EnemyPoolManager.Instance;
@@ -23,6 +23,7 @@ public class WaveManager : MonoBehaviour
     //! NOTE(Haizat): this is just a test method to see if the SpawnEnemyMove method works or not
     public void TestVoi()
     {
+        waveLevel = Random.Range(1, 3);
         StartCoroutine(SpawnEnemyWave());
     }
 
@@ -30,7 +31,7 @@ public class WaveManager : MonoBehaviour
     {
         for (int i = 0; i < enemyPoolManager.pools[0].size; i++)
         { 
-            enemyPoolManager.SpawnFromPool("Cube", managerHub.GetGridManager().GetFirstTile().transform.position, managerHub.GetGridManager().GetFirstTile().transform.rotation);
+            enemyPoolManager.SpawnFromPool(EnemyPoolManager.Instance.GetWaveMobByLevel(waveLevel), managerHub.GetGridManager().GetFirstTile().transform.position, managerHub.GetGridManager().GetFirstTile().transform.rotation);
             yield return new WaitForSeconds(1.0f);
         }
     }
