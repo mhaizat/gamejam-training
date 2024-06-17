@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private GameObject testPathTile;
     [SerializeField] private GameObject testEnemy;
 
     [SerializeField] private int width = 16;
     [SerializeField] private int height = 8;
     [SerializeField] private int minPathLength = 30;
+
+    public PathCellScriptableObject[] pathCellsArray;
 
     private PathGenerator pathGenerator;
 
@@ -37,7 +38,11 @@ public class GridManager : MonoBehaviour
 
         foreach (Vector2Int pathcell in pathCells)
         {
-            GameObject objectTile = Instantiate(testPathTile, new Vector3(pathcell.x, 0, pathcell.y), Quaternion.identity);
+            int neighborValue = pathGenerator.GetCellNeighborValue(pathcell.x, pathcell.y);
+            GameObject pathCellPrefab = pathCellsArray[neighborValue].pathPrefab;
+            GameObject objectTile = Instantiate(pathCellPrefab, new Vector3(pathcell.x, 0, pathcell.y), Quaternion.identity);
+            objectTile.transform.Rotate(0f, pathCellsArray[neighborValue].yRotation, 0f, Space.Self);
+            Debug.Log($"X: {pathcell.x}, Y: {pathcell.y} | {neighborValue.ToString()}");
             
             if (firstTile == null) firstTile = objectTile;
         }
@@ -79,12 +84,12 @@ public class GridManager : MonoBehaviour
                         x++;
                         validPath = true;
                     }
-                    else if (move == 1 && CellIsFree(x, y + 1) && y < (gridHeight - 2))
+                    else if (move == 1 && IsCellFree(x, y + 1) && y < (gridHeight - 2))
                     {
                         y++;
                         validPath = true;
                     }
-                    else if (move == 2 && CellIsFree(x, y - 1) && y > 2)
+                    else if (move == 2 && IsCellFree(x, y - 1) && y > 2)
                     {
                         y--;
                         validPath = true;
@@ -95,9 +100,35 @@ public class GridManager : MonoBehaviour
             return pathCells;
         }
 
-        private bool CellIsFree(int x , int y)
+        private bool IsCellFree(int x , int y)
         {
             return !pathCells.Contains(new Vector2Int(x, y));
+        }
+
+        public int GetCellNeighborValue(int x, int y)
+        {
+            int returnValue = 0;
+            if (IsCellFree(x, y - 1))
+            {
+                returnValue += 1;
+            }
+
+            if (IsCellFree(x - 1, y))
+            {
+                returnValue += 2;
+            }
+
+            if (IsCellFree(x + 1, y))
+            {
+                returnValue += 4;
+            }
+
+            if (IsCellFree(x, y + 1))
+            {
+                returnValue += 8;
+            }
+
+            return returnValue;
         }
     }
 }
