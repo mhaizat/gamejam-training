@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPoolManager: {fileID: 0}
   managerHub: {fileID: 0}
+  testButotn: {fileID: 0}
 --- !u!1 &3404893037742099394
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,9 +253,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9573d0331924742a42690c356c46e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testPathTile: {fileID: 9113889905255880788, guid: 987530dee32613f448159293e1ed7503, type: 3}
   testEnemy: {fileID: 0}
   width: 16
   height: 8
   minPathLength: 30
+  pathCellsArray:
+  - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
+  - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
+  - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
+  - {fileID: 11400000, guid: 7cef73ca8373f6046b701a89a0565313, type: 2}
+  - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
+  - {fileID: 11400000, guid: 1adaee48f66b52543b9f50a867fab559, type: 2}
+  - {fileID: 11400000, guid: 367dd5517bff47b4c91c9e34c7004e9b, type: 2}
+  - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
+  - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
+  - {fileID: 11400000, guid: 5521a3816da07ae4b8f9f672384857c4, type: 2}
+  - {fileID: 11400000, guid: 5c95b4f2853854e4c9904e8250a7c347, type: 2}
+  - {fileID: 11400000, guid: 3fbee3c95047e094ab968ee681812a5a, type: 2}
+  - {fileID: 11400000, guid: efeb38b89b0a340478aa0a9735e7f3d8, type: 2}
+  - {fileID: 11400000, guid: 0375b43b51eaef34fae2ec2d2c52e91f, type: 2}
+  - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
+  - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
+  environmentCellsArray:
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
   pathList: []

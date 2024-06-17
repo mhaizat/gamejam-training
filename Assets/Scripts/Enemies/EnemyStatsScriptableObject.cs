@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyBehavior", menuName = "ScriptableObjects/Create Enemy Behavior", order = 1)]
-public class EnemyBehaviorScriptableObject : ScriptableObject
+public class EnemyStatsScriptableObject : ScriptableObject
 {
     public Mesh enemyMeshFilter;
 
