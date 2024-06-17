@@ -274,4 +274,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0375b43b51eaef34fae2ec2d2c52e91f, type: 2}
   - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
   - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
+  environmentCellsArray:
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
+  - {fileID: 11400000, guid: 3b772a5f4bf6a2543be179441b827f77, type: 2}
   pathList: []

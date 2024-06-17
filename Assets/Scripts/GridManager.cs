@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int minPathLength = 30;
 
     public PathCellScriptableObject[] pathCellsArray;
+    public PathCellScriptableObject[] environmentCellsArray;
 
     private PathGenerator pathGenerator;
 
@@ -23,6 +24,13 @@ public class GridManager : MonoBehaviour
     public GameObject GetFirstTile() { return firstTile; }
 
     void Start()
+    {
+        CreateTiles();
+
+        pathList = pathGenerator.pathCells;
+    }
+
+    void CreateTiles()
     {
         pathGenerator = new PathGenerator(width, height);
 
@@ -43,11 +51,21 @@ public class GridManager : MonoBehaviour
             GameObject objectTile = Instantiate(pathCellPrefab, new Vector3(pathcell.x, 0, pathcell.y), Quaternion.identity);
             objectTile.transform.Rotate(0f, pathCellsArray[neighborValue].yRotation, 0f, Space.Self);
             Debug.Log($"X: {pathcell.x}, Y: {pathcell.y} | {neighborValue.ToString()}");
-            
+
             if (firstTile == null) firstTile = objectTile;
         }
 
-        pathList = pathGenerator.pathCells;
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (pathGenerator.IsCellFree(x, y))
+                {
+                    int randomSceneryCellIndex = Random.Range(0, environmentCellsArray.Length);
+                    Instantiate(environmentCellsArray[randomSceneryCellIndex].pathPrefab, new Vector3(x, 0f, y), Quaternion.identity);
+                }
+            }
+        }
     }
 
     private class PathGenerator
@@ -100,7 +118,7 @@ public class GridManager : MonoBehaviour
             return pathCells;
         }
 
-        private bool IsCellFree(int x , int y)
+        public bool IsCellFree(int x , int y)
         {
             return !pathCells.Contains(new Vector2Int(x, y));
         }
