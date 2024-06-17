@@ -122,14 +122,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a033d7959d5c7d54faf419c6199e4d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMeshFilter: {fileID: 0}
+  enemyBehavior: {fileID: 0}
   ground:
     serializedVersion: 2
     m_Bits: 8
-  name: 
+  enemyName: 
   health: 0
   defense: 0
-  walkSpeed: 0
+  healthBar: {fileID: 0}
 --- !u!64 &9222240867928330982
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 1352972323533234904}
   - component: {fileID: 4825898042512172327}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: HealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,3 +342,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47198286671b96b4cab0bacb8af7fb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 0}
