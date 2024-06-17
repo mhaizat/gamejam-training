@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerStat: {fileID: 11400000, guid: 3aac3b6752f254c8784d97a3080b5bda, type: 2}
+  towerSensor: {fileID: 3003905859347447820}
+  towerHealth: {fileID: 3573248222687517233}
   turrentBase: {fileID: 2650523893449632014}
   turrentEndPoint: {fileID: 5690731815597579377}
   targetUnit: {fileID: 0}

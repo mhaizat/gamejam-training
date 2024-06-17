@@ -7,6 +7,9 @@ public class BaseAttack : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private StatsSO towerStat;
 
+    [Header("Enemy")]
+    [SerializeField] private BaseHealth targetHealth;
+
     private float coolDown = .0f;
 
     public bool CanAttack()
@@ -33,6 +36,15 @@ public class BaseAttack : MonoBehaviour
 
     private void DoAttack()
     {
+        if (HasTarget() && targetHealth != null)
+        {
+            float finalAttack = Random.Range(towerStat.attackMinimumPoint, towerStat.attackMaximumPoint);
+            targetHealth.TakeDamage(finalAttack);
+        }
+    }
 
+    public void SetAttackTarget(BaseHealth targetHealth)
+    {
+        this.targetHealth = targetHealth;
     }
 }
