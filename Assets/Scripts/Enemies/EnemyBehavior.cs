@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    [SerializeField] private EnemyBehaviorScriptableObject enemyBehavior;
+    [SerializeField] private EnemyStatsScriptableObject enemyBehavior;
 
     [SerializeField] private LayerMask ground;
 
