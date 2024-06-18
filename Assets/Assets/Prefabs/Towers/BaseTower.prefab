@@ -74,22 +74,22 @@ MonoBehaviour:
   maxHealth: 0
   OnHealthChange:
     m_PersistentCalls:
+      m_Calls: []
+  OnHealthChangeValue:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CustomDebug, Assembly-CSharp
-        m_MethodName: SetText
-        m_Mode: 5
+      - m_Target: {fileID: 2760845506197511768}
+        m_TargetAssemblyTypeName: UIHealth, Assembly-CSharp
+        m_MethodName: OnHealthChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: OnHealthChanged is called on Base Tower
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHealthChangeValue:
-    m_PersistentCalls:
-      m_Calls: []
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -488,6 +488,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.ctime0
+      value: 19661
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.ctime1
+      value: 45875
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.key1.b
+      value: 0.007843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.key1.g
+      value: 0.9215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.key2.b
+      value: 0.003921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.key2.g
+      value: 0.9921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.key2.r
+      value: 0.023529414
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: colorGradient.m_NumColorKeys
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2755530286757775710, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -602,3 +650,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3670456905985495128, guid: caa073969610cc54f8f02389724deb71, type: 3}
   m_PrefabInstance: {fileID: 4294255469764397773}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2760845506197511768 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+  m_PrefabInstance: {fileID: 4294255469764397773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f23d0eb549384aa980c176ad6199eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
