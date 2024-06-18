@@ -11,8 +11,10 @@
   - [x] Tower Stat
 - Grid System
   - [ ] Enemy path
+  - [x] Path tiles
   - [ ] Whole grid
   - [ ] Tower placement (Usable path cell)
+  - [x] Dummy environment tiles
 - Pooling
   - [ ] Tower
   - [ ] Enemy
@@ -29,6 +31,7 @@
 - [ ] Load System
 - Player (Basic)
   - [x] Player health
+- [ ] Camera RTS
 
 ### UI Roadmap
 - [x] Menu UI
@@ -36,6 +39,21 @@
 - [x] Pause UI
 - [x] In Game HUD
 - [ ] UI Asset
+- [ ] Logic flow for UI
+  - [ ] Start button main menu
+  - [ ] Setting button main menu
+  - [ ] Quit button main menu
+  - [ ] Display setting menu
+  - [ ] Graphic setting menu
+  - [ ] Audio setting menu
+  - [ ] HUD
+    - [ ] Time
+    - [ ] Waves
+    - [ ] Currency
+    - [ ] Minimap
+  - [ ] Resume pause menu
+  - [ ] Setting pause menu
+  - [ ] Quit game pause menu
 
 ### Sound Roadmap
 - [ ] Music Assets
