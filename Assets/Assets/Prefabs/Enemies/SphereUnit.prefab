@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9045290115019593686}
   - component: {fileID: 7035898429978377463}
   - component: {fileID: 7299719139058094713}
+  - component: {fileID: 3907438883719862365}
   m_Layer: 0
   m_Name: SphereUnit
   m_TagString: Untagged
@@ -121,14 +122,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a033d7959d5c7d54faf419c6199e4d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBehavior: {fileID: 11400000, guid: 1e2e57f3e7004c7498831f4d36346938, type: 2}
   ground:
     serializedVersion: 2
     m_Bits: 8
-  enemyName: 
-  health: 0
-  defense: 0
-  healthBar: {fileID: 7008580456251474467}
+--- !u!114 &3907438883719862365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744183345665058458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9075ba801fc852441b0acb42e59a2605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 200
+  enemyDefense: 30
+  enemyHealthBar: {fileID: 7008580456251474467}
 --- !u!1001 &5904110608985579081
 PrefabInstance:
   m_ObjectHideFlags: 0
