@@ -21,12 +21,12 @@ public class UPCMainMenu : UIPanelController
 
     private void StartGame()
     {
-        UIManager.Instance.SetUIState(UIManager.UIState.GameHud);
+        UIManager.Instance.SetUIState(UIState.GameHud);
     }
 
     private void OpenSettingMenu()
     {
-        UIManager.Instance.SetUIState(UIManager.UIState.Settings);
+        UIManager.Instance.SetUIState(UIState.Settings);
     }
 
     private void QuitGame()

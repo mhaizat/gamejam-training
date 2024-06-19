@@ -89,14 +89,14 @@ public class UIManager : MonoBehaviour
         popupPanel.SetPanelActive(false);
         pausePanel.SetPanelActive(false);
     }
+}
 
-    public enum UIState
-    {
-        None,
-        MainMenu,
-        Settings,
-        GameHud,
-        PopUp,
-        Pause
-    }
+public enum UIState
+{
+    None,
+    MainMenu,
+    Settings,
+    GameHud,
+    PopUp,
+    Pause
 }
