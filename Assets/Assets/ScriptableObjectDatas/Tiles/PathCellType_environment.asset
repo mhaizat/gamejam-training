@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4fa523ad9c32a45b21358390fd6d2d, type: 3}
   m_Name: PathCellType_environment
   m_EditorClassIdentifier: 
-  PathCellType: 1
-  pathPrefab: {fileID: 9113889905255880788, guid: 33f43601c0ad6244e8ad37a67283d1e2, type: 3}
-  yRotation: 
+  PathCellType: 0
+  pathPrefab: {fileID: 9113889905255880788, guid: 34144f9674d6fbb4db446ed09d2367ef, type: 3}
+  yRotation: 0
+  canPlaceTowers: 0

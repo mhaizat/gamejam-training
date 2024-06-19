@@ -2,24 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class PathType
+{
+    public GameObject TileObject { get; set; }
+    public int x { get; set; }
+    public int y { get; set; }
+
+    public PathType(GameObject tileObject, int x, int y)
+    {
+        TileObject = tileObject;
+        this.x = x;
+        this.y = y;
+    }
+}
+
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private GameObject testEnemy;
-
+    private PathGenerator pathGenerator;
+    
     [SerializeField] private int width = 16;
     [SerializeField] private int height = 8;
     [SerializeField] private int minPathLength = 30;
 
-    public PathCellScriptableObject[] pathCellsArray;
-    public PathCellScriptableObject[] environmentCellsArray;
+    [SerializeField] private List<PathType> pathGridList;
+    [SerializeField] private List<PathType> nonPathList;
 
-    private PathGenerator pathGenerator;
+    [SerializeField] private GameObject testEnemy;
 
-    public List<Vector2Int> pathList;
 
-    public List<Vector2Int> GetPathList() { return pathList; }
+    [SerializeField] private PathCellScriptableObject[] pathCellsArray;
+    [SerializeField] private PathCellScriptableObject[] environmentCellsArray;
+
+
+    [SerializeField] private List<Vector2Int> pathList;
 
     private GameObject firstTile;
+    public List<Vector2Int> GetPathList() { return pathList; }
 
     public GameObject GetFirstTile() { return firstTile; }
 
@@ -43,14 +62,15 @@ public class GridManager : MonoBehaviour
             pathSize = pathCells.Count;
         }
 
-
         foreach (Vector2Int pathcell in pathCells)
         {
             int neighborValue = pathGenerator.GetCellNeighborValue(pathcell.x, pathcell.y);
+
             GameObject pathCellPrefab = pathCellsArray[neighborValue].pathPrefab;
             GameObject objectTile = Instantiate(pathCellPrefab, new Vector3(pathcell.x, 0, pathcell.y), Quaternion.identity);
+
             objectTile.transform.Rotate(0f, pathCellsArray[neighborValue].yRotation, 0f, Space.Self);
-            Debug.Log($"X: {pathcell.x}, Y: {pathcell.y} | {neighborValue.ToString()}");
+            pathGridList.Add(new PathType(objectTile, pathcell.x, pathcell.y));
 
             if (firstTile == null) firstTile = objectTile;
         }
@@ -62,13 +82,31 @@ public class GridManager : MonoBehaviour
                 if (pathGenerator.IsCellFree(x, y))
                 {
                     int randomSceneryCellIndex = Random.Range(0, environmentCellsArray.Length);
-                    Instantiate(environmentCellsArray[randomSceneryCellIndex].pathPrefab, new Vector3(x, 0f, y), Quaternion.identity);
+                    GameObject obj = Instantiate(environmentCellsArray[randomSceneryCellIndex].pathPrefab, new Vector3(x, 0f, y), Quaternion.identity);
+                    nonPathList.Add(new PathType(obj, x, y));
+                }
+            }
+        }
+
+        foreach (PathType pathType in pathGridList)
+        {
+            List<Vector2Int> adjacentCells = pathGenerator.GetAdjacentCell(new Vector2Int(pathType.x, pathType.y));
+
+            foreach (Vector2Int adjacentCell in adjacentCells)
+            {
+                for (int i = 0; i < nonPathList.Count; i++)
+                {
+                    if (nonPathList[i].x == adjacentCell.x && nonPathList[i].y == adjacentCell.y)
+                    {
+                        TileBehavior tb = nonPathList[i].TileObject.GetComponent<TileBehavior>();
+                        tb.SetIsTileInteractable(true);
+                    }
                 }
             }
         }
     }
 
-    private class PathGenerator
+    public class PathGenerator
     {
         private int gridWidth, gridHeight;
 
@@ -118,7 +156,7 @@ public class GridManager : MonoBehaviour
             return pathCells;
         }
 
-        public bool IsCellFree(int x , int y)
+        public bool IsCellFree(int x, int y)
         {
             return !pathCells.Contains(new Vector2Int(x, y));
         }
@@ -126,6 +164,7 @@ public class GridManager : MonoBehaviour
         public int GetCellNeighborValue(int x, int y)
         {
             int returnValue = 0;
+
             if (IsCellFree(x, y - 1))
             {
                 returnValue += 1;
@@ -147,6 +186,38 @@ public class GridManager : MonoBehaviour
             }
 
             return returnValue;
+        }
+        public List<Vector2Int> GetAdjacentCell(Vector2Int pathPosition)
+        {
+            List<Vector2Int> adjacentCells = new List<Vector2Int>();
+
+            Vector2Int[] adjacentOffsets = new Vector2Int[]
+            {
+                new Vector2Int(0, 1),  // Up
+                new Vector2Int(1, 1),  // Top Right
+                new Vector2Int(1, 0),  // Right
+                new Vector2Int(1, -1), // Bottom Right
+                new Vector2Int(0, -1), // Down
+                new Vector2Int(-1, -1),// Bottom Left
+                new Vector2Int(-1, 0), // Left
+                new Vector2Int(-1, 1)  // Top Left
+            };
+
+            foreach (Vector2Int offset in adjacentOffsets)
+            {
+                Vector2Int cellPosition = new Vector2Int(pathPosition.x + offset.x, pathPosition.y + offset.y);
+                if (!pathCells.Contains(cellPosition) && IsWithinBounds(cellPosition.x, cellPosition.y))
+                {
+                    adjacentCells.Add(cellPosition);
+                }
+            }
+
+            return adjacentCells;
+        }
+
+        private bool IsWithinBounds(int x, int y)
+        {
+            return x >= 0 && x < gridWidth && y >= 0 && y < gridHeight;
         }
     }
 }
