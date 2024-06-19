@@ -14,6 +14,9 @@ public class UIButtonState : MonoBehaviour
     [Space(20)]
     public UnityEvent<bool> onPress = null;
 
+    [Space(20)]
+    [SerializeField] private UIButtonStateGroup buttonStateGroup;
+
 
     private void Start()
     {
@@ -25,18 +28,29 @@ public class UIButtonState : MonoBehaviour
 
         if (activeLine != null)
             activeLine.enabled = IsSelected;
+
+        if (buttonStateGroup != null)
+        {
+            buttonStateGroup.RegisterButton(this);
+            buttonStateGroup.OnButtonOff += SetButtonOff;
+        }
     }
 
     public void SetButtonState()
     {
-        if(buttonState != null)
+        if(buttonStateGroup != null)
         {
-            IsSelected = !IsSelected;
+            buttonStateGroup.NotifyButtonsOn(this);
+        }
+
+         if (buttonState != null)
+        {
+            IsSelected = true;
 
             onPress?.Invoke(IsSelected);
         }
 
-        if(activeLine != null)
+        if (activeLine != null)
         {
             activeLine.enabled = IsSelected;
         }
@@ -44,5 +58,29 @@ public class UIButtonState : MonoBehaviour
         {
             Debug.Log($"[UI]: A component is missing. Unable to execute logic");
         }
+    }
+
+    private void SetButtonOff() 
+    {
+        if(buttonState != null)
+        {
+            IsSelected = false;
+
+            onPress?.Invoke(IsSelected);
+        }
+
+        if (activeLine != null)
+        {
+            activeLine.enabled = IsSelected;
+        }
+        else
+        {
+            Debug.Log($"[UI]: A component is missing. Unable to execute logic");
+        }
+    }
+
+    private void OnDisable()
+    {
+        buttonStateGroup.OnButtonOff -= SetButtonOff;
     }
 }
