@@ -51,9 +51,11 @@ MonoBehaviour:
   towerStat: {fileID: 11400000, guid: 3aac3b6752f254c8784d97a3080b5bda, type: 2}
   towerSensor: {fileID: 3003905859347447820}
   towerHealth: {fileID: 3573248222687517233}
+  towerAttack: {fileID: 0}
   turrentBase: {fileID: 2650523893449632014}
   turrentEndPoint: {fileID: 5690731815597579377}
   targetUnit: {fileID: 0}
+  towerState: 0
 --- !u!114 &3573248222687517233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerStat: {fileID: 11400000, guid: 3aac3b6752f254c8784d97a3080b5bda, type: 2}
+  targetHealth: {fileID: 0}
   SetHasTarget: 0
 --- !u!1 &3649487915829164453
 GameObject:
@@ -399,7 +402,7 @@ GameObject:
   - component: {fileID: 1533380795301202768}
   - component: {fileID: 7551951071433191998}
   - component: {fileID: 3003905859347447820}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

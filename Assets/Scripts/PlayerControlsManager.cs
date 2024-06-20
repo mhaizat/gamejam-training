@@ -23,6 +23,6 @@ public class PlayerControlsManager : MonoBehaviour
 
     public float GetMouseLeftClick()
     {
-        return playerControls.Movement.MoveUnit.ReadValue<float>();
+        return playerControls.Movement.LeftMouseClick.ReadValue<float>();
     }
 }
