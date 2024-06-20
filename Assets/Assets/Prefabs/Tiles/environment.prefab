@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1513177293446890383}
   - component: {fileID: 9105643296911472142}
   - component: {fileID: -5750594774038481307}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,3 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0dd5d86df93b041b64c57d30bf647f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileInteractable: 0
+  isObjectPlaced: 0
+  isTileAPath: 0

@@ -29,6 +29,6 @@ public class GameInstance : MonoBehaviour
 
     public void LoadUIScene()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        //SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 }
