@@ -6,7 +6,7 @@
             "id": "f16030d8-5d2f-4838-af5a-1ea76bb73d77",
             "actions": [
                 {
-                    "name": "MoveUnit",
+                    "name": "LeftMouseClick",
                     "type": "Button",
                     "id": "b0f7fb83-3b21-4fa6-9d24-e16997b4dccb",
                     "expectedControlType": "Button",
@@ -23,7 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MoveUnit",
+                    "action": "LeftMouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

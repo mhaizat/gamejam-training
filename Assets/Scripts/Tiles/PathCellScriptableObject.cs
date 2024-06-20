@@ -12,4 +12,5 @@ public class PathCellScriptableObject : ScriptableObject
 
     public GameObject pathPrefab;
     public float yRotation;
+    public bool canPlaceTowers;
 }

@@ -82,6 +82,7 @@ Transform:
   - {fileID: 5792246317923208045}
   - {fileID: 2719609494965092275}
   - {fileID: 7525091145285795678}
+  - {fileID: 575416629599006613}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5297635645929023204
@@ -125,7 +126,7 @@ GameObject:
   - component: {fileID: 4504688232611001318}
   - component: {fileID: 1093572774491329970}
   m_Layer: 0
-  m_Name: PlayerControlsManager
+  m_Name: InputManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,6 +210,57 @@ MonoBehaviour:
   - tag: Sphere
     prefab: {fileID: 1744183345665058458, guid: 2bedbc6fbed9859448e6c271e1282e03, type: 3}
     size: 20
+--- !u!1 &7708022516625663007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575416629599006613}
+  - component: {fileID: 9019751751399101752}
+  m_Layer: 0
+  m_Name: UnitManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &575416629599006613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708022516625663007}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4149774467914965525}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9019751751399101752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708022516625663007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a642b92765fc8d54b8f708d9bf193e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Tower 1
+    prefab: {fileID: 2194544629500321152, guid: 453d7f7aad862cc4088f0443baefacc4, type: 3}
+    size: 15
+  - tag: Tower 2
+    prefab: {fileID: 2479774724452007317, guid: 3813a01ebb04f8f41a7426362b4e8a8a, type: 3}
+    size: 15
 --- !u!1 &8498953919775913973
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,10 +305,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9573d0331924742a42690c356c46e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testEnemy: {fileID: 0}
   width: 16
   height: 8
   minPathLength: 30
+  pathGridList: []
+  nonPathList: []
+  testEnemy: {fileID: 0}
   pathCellsArray:
   - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}
   - {fileID: 11400000, guid: f7dd303eb12fa154294f2df35621c903, type: 2}

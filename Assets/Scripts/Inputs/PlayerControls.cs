@@ -28,7 +28,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""f16030d8-5d2f-4838-af5a-1ea76bb73d77"",
             ""actions"": [
                 {
-                    ""name"": ""MoveUnit"",
+                    ""name"": ""LeftMouseClick"",
                     ""type"": ""Button"",
                     ""id"": ""b0f7fb83-3b21-4fa6-9d24-e16997b4dccb"",
                     ""expectedControlType"": ""Button"",
@@ -45,7 +45,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveUnit"",
+                    ""action"": ""LeftMouseClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -56,7 +56,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_MoveUnit = m_Movement.FindAction("MoveUnit", throwIfNotFound: true);
+        m_Movement_LeftMouseClick = m_Movement.FindAction("LeftMouseClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -118,12 +118,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Movement
     private readonly InputActionMap m_Movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
-    private readonly InputAction m_Movement_MoveUnit;
+    private readonly InputAction m_Movement_LeftMouseClick;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
         public MovementActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MoveUnit => m_Wrapper.m_Movement_MoveUnit;
+        public InputAction @LeftMouseClick => m_Wrapper.m_Movement_LeftMouseClick;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -133,16 +133,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
-            @MoveUnit.started += instance.OnMoveUnit;
-            @MoveUnit.performed += instance.OnMoveUnit;
-            @MoveUnit.canceled += instance.OnMoveUnit;
+            @LeftMouseClick.started += instance.OnLeftMouseClick;
+            @LeftMouseClick.performed += instance.OnLeftMouseClick;
+            @LeftMouseClick.canceled += instance.OnLeftMouseClick;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
         {
-            @MoveUnit.started -= instance.OnMoveUnit;
-            @MoveUnit.performed -= instance.OnMoveUnit;
-            @MoveUnit.canceled -= instance.OnMoveUnit;
+            @LeftMouseClick.started -= instance.OnLeftMouseClick;
+            @LeftMouseClick.performed -= instance.OnLeftMouseClick;
+            @LeftMouseClick.canceled -= instance.OnLeftMouseClick;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -162,6 +162,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public MovementActions @Movement => new MovementActions(this);
     public interface IMovementActions
     {
-        void OnMoveUnit(InputAction.CallbackContext context);
+        void OnLeftMouseClick(InputAction.CallbackContext context);
     }
 }
