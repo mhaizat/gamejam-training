@@ -30,6 +30,9 @@ public class UnitPoolManager : MonoBehaviour
     {
         unitOneDictionary = new Dictionary<string, Queue<GameObject>>();
 
+        GameObject unitParentObject = new GameObject("Unit Holder");
+        unitParentObject.transform.position = Vector3.zero;
+
         foreach (Pool pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -38,6 +41,8 @@ public class UnitPoolManager : MonoBehaviour
             {
                 GameObject _object = Instantiate(pool.prefab);
                 _object.SetActive(false);
+                _object.transform.SetParent(unitParentObject.transform);
+
                 objectPool.Enqueue(_object);
             }
 

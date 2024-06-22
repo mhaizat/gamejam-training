@@ -26,6 +26,9 @@ public class EnemyPoolManager : MonoBehaviour
     {
         normalWaveDictionary = new Dictionary<string, Queue<GameObject>>();
 
+        GameObject enemyParentObject = new GameObject("Enemy Holder");
+        enemyParentObject.transform.position = Vector3.zero;
+
         foreach(Pool pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -34,6 +37,7 @@ public class EnemyPoolManager : MonoBehaviour
             { 
                 GameObject _object = Instantiate(pool.prefab);
                 _object.SetActive(false);
+                _object.transform.SetParent(enemyParentObject.transform);
                 objectPool.Enqueue(_object);
             }
 

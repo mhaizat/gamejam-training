@@ -53,6 +53,9 @@ public class GridManager : MonoBehaviour
     {
         pathGenerator = new PathGenerator(width, height);
 
+        GameObject tileParentObject = new GameObject("Tile Holder");
+        tileParentObject.transform.position = Vector3.zero;
+
         List<Vector2Int> pathCells = pathGenerator.GeneratePath();
         int pathSize = pathCells.Count;
 
@@ -72,6 +75,9 @@ public class GridManager : MonoBehaviour
             objectTile.transform.Rotate(0f, pathCellsArray[neighborValue].yRotation, 0f, Space.Self);
             pathGridList.Add(new PathType(objectTile, pathcell.x, pathcell.y));
 
+            objectTile.transform.SetParent(tileParentObject.transform);
+
+
             if (firstTile == null) firstTile = objectTile;
         }
 
@@ -84,6 +90,8 @@ public class GridManager : MonoBehaviour
                     int randomSceneryCellIndex = Random.Range(0, environmentCellsArray.Length);
                     GameObject obj = Instantiate(environmentCellsArray[randomSceneryCellIndex].pathPrefab, new Vector3(x, 0f, y), Quaternion.identity);
                     nonPathList.Add(new PathType(obj, x, y));
+                    obj.transform.SetParent(tileParentObject.transform);
+
                 }
             }
         }
