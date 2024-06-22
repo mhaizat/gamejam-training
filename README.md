@@ -10,14 +10,14 @@
   - [x] Tower Sensor
   - [x] Tower Stat
 - Grid System
-  - [ ] Enemy path
+  - [x] Enemy path
   - [x] Path tiles
-  - [ ] Whole grid
-  - [ ] Tower placement (Usable path cell)
+  - [x] Whole grid
+  - [x] Tower placement (Usable path cell)
   - [x] Dummy environment tiles
 - Pooling
-  - [ ] Tower
-  - [ ] Enemy
+  - [x] Tower - two tower type
+  - [x] Enemy - one type only
 - Wave System base
   - [x] Spawn starting wave
   - [ ] Spawn next wave
