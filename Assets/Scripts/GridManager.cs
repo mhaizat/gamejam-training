@@ -5,13 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class PathType
 {
-    public GameObject TileObject { get; set; }
+    public GameObject pathTile { get; set; }
     public int x { get; set; }
     public int y { get; set; }
 
-    public PathType(GameObject tileObject, int x, int y)
+    public PathType(GameObject _pathTile, int x, int y)
     {
-        TileObject = tileObject;
+        pathTile = _pathTile;
         this.x = x;
         this.y = y;
     }
@@ -25,8 +25,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int height = 8;
     [SerializeField] private int minPathLength = 30;
 
-    [SerializeField] private List<PathType> pathGridList;
-    [SerializeField] private List<PathType> nonPathList;
+    [SerializeField] private List<PathType> pathRouteList;
+    [SerializeField] private List<PathType> nonPathRouteList;
 
     [SerializeField] private GameObject testEnemy;
 
@@ -73,7 +73,7 @@ public class GridManager : MonoBehaviour
             GameObject objectTile = Instantiate(pathCellPrefab, new Vector3(pathcell.x, 0, pathcell.y), Quaternion.identity);
 
             objectTile.transform.Rotate(0f, pathCellsArray[neighborValue].yRotation, 0f, Space.Self);
-            pathGridList.Add(new PathType(objectTile, pathcell.x, pathcell.y));
+            pathRouteList.Add(new PathType(objectTile, pathcell.x, pathcell.y));
 
             objectTile.transform.SetParent(tileParentObject.transform);
 
@@ -89,24 +89,24 @@ public class GridManager : MonoBehaviour
                 {
                     int randomSceneryCellIndex = Random.Range(0, environmentCellsArray.Length);
                     GameObject obj = Instantiate(environmentCellsArray[randomSceneryCellIndex].pathPrefab, new Vector3(x, 0f, y), Quaternion.identity);
-                    nonPathList.Add(new PathType(obj, x, y));
+                    nonPathRouteList.Add(new PathType(obj, x, y));
                     obj.transform.SetParent(tileParentObject.transform);
 
                 }
             }
         }
 
-        foreach (PathType pathType in pathGridList)
+        foreach (PathType pathType in pathRouteList)
         {
             List<Vector2Int> adjacentCells = pathGenerator.GetAdjacentCell(new Vector2Int(pathType.x, pathType.y));
 
             foreach (Vector2Int adjacentCell in adjacentCells)
             {
-                for (int i = 0; i < nonPathList.Count; i++)
+                for (int i = 0; i < nonPathRouteList.Count; i++)
                 {
-                    if (nonPathList[i].x == adjacentCell.x && nonPathList[i].y == adjacentCell.y)
+                    if (nonPathRouteList[i].x == adjacentCell.x && nonPathRouteList[i].y == adjacentCell.y)
                     {
-                        TileBehavior tb = nonPathList[i].TileObject.GetComponent<TileBehavior>();
+                        TileBehavior tb = nonPathRouteList[i].pathTile.GetComponent<TileBehavior>();
                         tb.SetIsTileInteractable(true);
                     }
                 }
