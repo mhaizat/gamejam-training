@@ -225,7 +225,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 805382880526909039, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: HealthCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 2755530286757775710, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_AnchorMax.x
