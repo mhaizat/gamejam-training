@@ -6,8 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameInstance : MonoBehaviour
 {
+    public enum GameState { UIOnly, GameAndUI, GameOnly}
+    
     #region Instance
     private static GameInstance _instance;
+    
+    public GameState currentGameState;
+
     public static GameInstance Instance
     {
         get
@@ -31,4 +36,11 @@ public class GameInstance : MonoBehaviour
     {
         //SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
+
+    public void SetGameUIState(GameState gameState)
+    {
+        currentGameState = gameState;
+    }
+
+    public GameState GetGameUIState() { return currentGameState; }
 }
