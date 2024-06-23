@@ -48,14 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebcc99b12c2a544a4ab6a9a3717477aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerStat: {fileID: 11400000, guid: 3aac3b6752f254c8784d97a3080b5bda, type: 2}
+  towerStat: {fileID: 11400000, guid: fe5f4283aa73441deb13f744860feffc, type: 2}
   towerSensor: {fileID: 3003905859347447820}
   towerHealth: {fileID: 3573248222687517233}
-  towerAttack: {fileID: 0}
+  towerAttack: {fileID: 8281679163844462559}
   turrentBase: {fileID: 2650523893449632014}
   turrentEndPoint: {fileID: 5690731815597579377}
   targetUnit: {fileID: 0}
-  towerState: 0
+  towerState: 2
 --- !u!114 &3573248222687517233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,24 +68,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add9a5aafa8b9471799fd5c4b146af06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthStat: {fileID: 11400000, guid: 3aac3b6752f254c8784d97a3080b5bda, type: 2}
+  healthStat: {fileID: 11400000, guid: fe5f4283aa73441deb13f744860feffc, type: 2}
   currentHealth: 0
   maxHealth: 0
   OnHealthChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CustomDebug, Assembly-CSharp
-        m_MethodName: SetText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: OnHealthChanged is called on Base Tower
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnHealthChangeValue:
     m_PersistentCalls:
       m_Calls: []
@@ -104,8 +92,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5eef8e62b06540a894e13c28ef4c875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerStat: {fileID: 11400000, guid: 3aac3b6752f254c8784d97a3080b5bda, type: 2}
+  towerStat: {fileID: 11400000, guid: fe5f4283aa73441deb13f744860feffc, type: 2}
   targetHealth: {fileID: 0}
+  coolDown: 0
+  OnTargetDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4783913397482794168}
+        m_TargetAssemblyTypeName: BaseTower, Assembly-CSharp
+        m_MethodName: OnTargetLoss
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   SetHasTarget: 0
 --- !u!1 &3649487915829164453
 GameObject:
@@ -471,7 +475,31 @@ MonoBehaviour:
   targetList: []
   OnTargetDetected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4783913397482794168}
+        m_TargetAssemblyTypeName: BaseTower, Assembly-CSharp
+        m_MethodName: UpdateState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnTargetLoss:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4783913397482794168}
+        m_TargetAssemblyTypeName: BaseTower, Assembly-CSharp
+        m_MethodName: OnTargetLoss
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
