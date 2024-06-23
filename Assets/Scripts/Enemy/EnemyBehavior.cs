@@ -5,27 +5,15 @@ using UnityEngine.UI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    [SerializeField] private EnemyStatsScriptableObject enemyBehavior;
+    private enum EnemyType { Ground, Air };
 
-    [SerializeField] private LayerMask ground;
+    [SerializeField] private EnemyType enemyType;
+    
 
     private int currentPathIndex;
     private float tolerance = 0.01f;
 
-    public string enemyName;
-    public float health;
-    public float defense;
-
-    [SerializeField] private Slider healthBar;
-
-    void Start()
-    {
-        enemyName = enemyBehavior.enemyName;
-        health = enemyBehavior.enemyHealth;
-        defense = enemyBehavior.enemyDefense;
-
-        SetMaxHealth(health);
-    }
+    private float yOffset = 2.0f;
 
     private void OnEnable()
     {
@@ -37,17 +25,13 @@ public class EnemyBehavior : MonoBehaviour
         StopCoroutine(FollowPathCoroutine(ManagerHub.Instance.GetGridManager().GetPathList()));
     }
 
-    void SetMaxHealth(float maxHealth)
-    {
-        healthBar.maxValue = maxHealth;
-        healthBar.value = maxHealth;
-    }
-
     private IEnumerator FollowPathCoroutine(List<Vector2Int> pathList)
     {
         while (currentPathIndex < pathList.Count || gameObject.activeInHierarchy)
         {
-            Vector3 pathPosition = new Vector3(pathList[currentPathIndex].x, transform.position.y, pathList[currentPathIndex].y);
+            float yPos = enemyType == EnemyType.Ground ? transform.position.y : transform.position.y + yOffset;
+
+            Vector3 pathPosition = new Vector3(pathList[currentPathIndex].x, yPos, pathList[currentPathIndex].y);
 
             while (Vector3.Distance(transform.position, pathPosition) > tolerance)
             {

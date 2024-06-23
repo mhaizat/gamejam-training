@@ -20,4 +20,6 @@ public class UIPanelController : MonoBehaviour
         _canvasGroup.blocksRaycasts = isActive;
         _canvasGroup.interactable = isActive;
     }
+
+    public virtual void OnInitialized() { }
 }
