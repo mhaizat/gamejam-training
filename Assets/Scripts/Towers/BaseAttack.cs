@@ -47,7 +47,6 @@ public class BaseAttack : MonoBehaviour
             {
                 float finalAttack = Random.Range(towerStat.attackMinimumPoint, towerStat.attackMaximumPoint);
                 targetHealth.TakeDamage(finalAttack);
-                Debug.Log("Do attacking");
             }
             else
             {
@@ -57,7 +56,8 @@ public class BaseAttack : MonoBehaviour
         
         if(targetHealth == null)
         {
-            Debug.Log("No target health is found");
+            //! Optional to remove this line
+            // Debug.Log("No target health is found");
         }
     }
 
@@ -73,8 +73,6 @@ public class BaseAttack : MonoBehaviour
         }
         
         SetAttackTarget(null);
-
-        Debug.Log("Stop attack");
     }
 
     public void SetAttackTarget(BaseHealth targetHealth)
