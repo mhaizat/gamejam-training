@@ -14,28 +14,45 @@ public class EnemyPoolManager : MonoBehaviour
         public int size;
     }
 
-    public List<Pool> pools;
+    [SerializeField] public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> normalWaveDictionary;
+    public Dictionary<string, Queue<GameObject>> bossWaveDictionary;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
     }
 
     private void Start()
+    {
+        CreateWavePool();
+    }
+
+    private void CreateWavePool()
     {
         normalWaveDictionary = new Dictionary<string, Queue<GameObject>>();
 
         GameObject enemyParentObject = new GameObject("Enemy Holder");
         enemyParentObject.transform.position = Vector3.zero;
 
-        foreach(Pool pool in pools)
+        foreach (Pool pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
             for (int i = 0; i < pool.size; i++)
-            { 
+            {
                 GameObject _object = Instantiate(pool.prefab);
+
+                EnemyBehavior enemy = _object.GetComponent<EnemyBehavior>();
+                
+                if (enemy) enemy.SetTag(pool.tag);
+
                 _object.SetActive(false);
                 _object.transform.SetParent(enemyParentObject.transform);
                 objectPool.Enqueue(_object);
@@ -58,10 +75,20 @@ public class EnemyPoolManager : MonoBehaviour
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
-        //! NOTE(Haizat): this needs to be moved to when the enemy is dead or completed a lap of the path
-        normalWaveDictionary[tag].Enqueue(objectToSpawn);
-
         return objectToSpawn;
+    }
+
+    public void ReturnToPool(string tag, GameObject spawnedEnemy, bool isSpecial = false)
+    {
+        var dictionary = isSpecial ? bossWaveDictionary : normalWaveDictionary;
+
+        if (!dictionary.ContainsKey(tag))
+        {
+            return;
+        }
+
+        spawnedEnemy.SetActive(false);
+        dictionary[tag].Enqueue(spawnedEnemy);
     }
 
     public string GetWaveMobByLevel(int level)
@@ -72,6 +99,8 @@ public class EnemyPoolManager : MonoBehaviour
                 return "Cube";
             case 2:
                 return "Sphere";
+            case 3:
+                return "Cube";
                 
                 //! Can add more levels
                 //!

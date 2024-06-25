@@ -15,6 +15,8 @@ public class EnemyBehavior : MonoBehaviour
 
     private float yOffset = 2.0f;
 
+    [SerializeField] private string tag;
+
     private void OnEnable()
     {
         StartCoroutine(FollowPathCoroutine(ManagerHub.Instance.GetGridManager().GetPathList()));
@@ -42,4 +44,13 @@ public class EnemyBehavior : MonoBehaviour
             currentPathIndex++;
         }
     }
+
+    public void EnemyDeath()
+    {
+        EnemyPoolManager.Instance.ReturnToPool(GetTag(), gameObject);
+    }
+
+    public string GetTag() { return tag; }
+
+    public void SetTag(string _tag) { tag = _tag; }
 }
