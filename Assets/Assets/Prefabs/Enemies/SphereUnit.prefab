@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9045290115019593686}
   - component: {fileID: 7035898429978377463}
   - component: {fileID: 7299719139058094713}
-  - component: {fileID: 3907438883719862365}
   - component: {fileID: 4837559274829656304}
   - component: {fileID: -5167829095179389394}
   m_Layer: 6
@@ -125,21 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
---- !u!114 &3907438883719862365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744183345665058458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9075ba801fc852441b0acb42e59a2605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyHealth: 200
-  enemyDefense: 30
-  enemyHealthBar: {fileID: 7008580456251474467}
+  tag: 
 --- !u!54 &4837559274829656304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -203,10 +188,10 @@ MonoBehaviour:
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1744183345665058458}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 7299719139058094713}
+        m_TargetAssemblyTypeName: EnemyBehavior, Assembly-CSharp
+        m_MethodName: EnemyDeath
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -215,6 +200,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isEnemy: 0
 --- !u!1001 &5904110608985579081
 PrefabInstance:
   m_ObjectHideFlags: 0
