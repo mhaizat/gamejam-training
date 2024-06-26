@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BaseAttack : MonoBehaviour
 {
@@ -10,7 +12,10 @@ public class BaseAttack : MonoBehaviour
     [Header("Enemy")]
     [SerializeField] private BaseHealth targetHealth;
 
-    private float coolDown = .0f;
+    [SerializeField] private float coolDown = .0f;
+
+    [Header("Unity Event")]
+    public UnityEvent OnTargetDeath;
 
     public bool CanAttack()
     {
@@ -38,13 +43,49 @@ public class BaseAttack : MonoBehaviour
     {
         if (HasTarget() && targetHealth != null)
         {
-            float finalAttack = Random.Range(towerStat.attackMinimumPoint, towerStat.attackMaximumPoint);
-            targetHealth.TakeDamage(finalAttack);
+            if(targetHealth.gameObject.activeInHierarchy)
+            {
+                float finalAttack = Random.Range(towerStat.attackMinimumPoint, towerStat.attackMaximumPoint);
+                targetHealth.TakeDamage(finalAttack);
+            }
+            else
+            {
+                StopAttack();
+            }
         }
+        
+        if(targetHealth == null)
+        {
+            //! Optional to remove this line
+            // Debug.Log("No target health is found");
+        }
+    }
+
+    public void StopAttack()
+    {
+        SetHasTarget = false;
+        coolDown = towerStat.attackCooldown;
+
+        OnTargetDeath?.Invoke();
+        if (targetHealth != null && targetHealth.OnDeathEvent != null)
+        {
+            targetHealth.OnDeathEvent.RemoveListener(StopAttack);
+        }
+        
+        SetAttackTarget(null);
     }
 
     public void SetAttackTarget(BaseHealth targetHealth)
     {
+        if (this.targetHealth != null)
+        {
+            this.targetHealth.OnDeathEvent.RemoveListener(StopAttack);
+        }
+
         this.targetHealth = targetHealth;
+        if (targetHealth != null)
+        {
+            targetHealth.OnDeathEvent.AddListener(StopAttack);
+        }
     }
 }

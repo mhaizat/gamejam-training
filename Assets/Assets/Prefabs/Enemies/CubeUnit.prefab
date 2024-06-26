@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 5656183260718909960}
   - component: {fileID: 6003806343706375433}
   - component: {fileID: 6375274922381242062}
-  - component: {fileID: 1027270585901920488}
-  m_Layer: 0
+  - component: {fileID: 1699195522532856478}
+  - component: {fileID: 2931061532376291530}
+  m_Layer: 6
   m_Name: CubeUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +35,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7080427946149922125}
+  - {fileID: 4207319472208206482}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4569885801369280997
@@ -122,10 +123,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a033d7959d5c7d54faf419c6199e4d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ground:
+  enemyType: 0
+  tag: 
+--- !u!54 &1699195522532856478
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2497308199678852433}
+  serializedVersion: 4
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 8
---- !u!114 &1027270585901920488
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2931061532376291530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,13 +161,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 2497308199678852433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9075ba801fc852441b0acb42e59a2605, type: 3}
+  m_Script: {fileID: 11500000, guid: add9a5aafa8b9471799fd5c4b146af06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 150
-  enemyDefense: 10
-  enemyHealthBar: {fileID: 6926053764915317119}
---- !u!1001 &5814902139300271381
+  healthStat: {fileID: 11400000, guid: 1133b0d7b6404134fb8c4c43acafc51c, type: 2}
+  currentHealth: 0
+  maxHealth: 150
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChangeValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1538910671295471199}
+        m_TargetAssemblyTypeName: UIHealth, Assembly-CSharp
+        m_MethodName: OnHealthChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6375274922381242062}
+        m_TargetAssemblyTypeName: EnemyBehavior, Assembly-CSharp
+        m_MethodName: EnemyDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isEnemy: 0
+--- !u!1001 &617964976185330378
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -150,7 +211,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 805382880526909039, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: HealthCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 2755530286757775710, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_AnchorMax.x
@@ -158,6 +219,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2755530286757775710, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755530286757775710, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3670456905985495128, guid: caa073969610cc54f8f02389724deb71, type: 3}
@@ -226,7 +291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3670456905985495128, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.6
+      value: 1.5999756
       objectReference: {fileID: 0}
     - target: {fileID: 3670456905985495128, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -240,28 +305,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5263511903701052509, guid: caa073969610cc54f8f02389724deb71, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caa073969610cc54f8f02389724deb71, type: 3}
---- !u!114 &6926053764915317119 stripped
+--- !u!114 &1538910671295471199 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3507432866775440490, guid: caa073969610cc54f8f02389724deb71, type: 3}
-  m_PrefabInstance: {fileID: 5814902139300271381}
+  m_CorrespondingSourceObject: {fileID: 2146032040166233237, guid: caa073969610cc54f8f02389724deb71, type: 3}
+  m_PrefabInstance: {fileID: 617964976185330378}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f23d0eb549384aa980c176ad6199eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7080427946149922125 stripped
+--- !u!224 &4207319472208206482 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3670456905985495128, guid: caa073969610cc54f8f02389724deb71, type: 3}
-  m_PrefabInstance: {fileID: 5814902139300271381}
+  m_PrefabInstance: {fileID: 617964976185330378}
   m_PrefabAsset: {fileID: 0}

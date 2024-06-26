@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 9045290115019593686}
   - component: {fileID: 7035898429978377463}
   - component: {fileID: 7299719139058094713}
-  - component: {fileID: 3907438883719862365}
-  m_Layer: 0
+  - component: {fileID: 4837559274829656304}
+  - component: {fileID: -5167829095179389394}
+  m_Layer: 6
   m_Name: SphereUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,10 +123,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a033d7959d5c7d54faf419c6199e4d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ground:
+  enemyType: 0
+  tag: 
+--- !u!54 &4837559274829656304
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744183345665058458}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 8
---- !u!114 &3907438883719862365
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-5167829095179389394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,12 +161,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 1744183345665058458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9075ba801fc852441b0acb42e59a2605, type: 3}
+  m_Script: {fileID: 11500000, guid: add9a5aafa8b9471799fd5c4b146af06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 200
-  enemyDefense: 30
-  enemyHealthBar: {fileID: 7008580456251474467}
+  healthStat: {fileID: 11400000, guid: 1133b0d7b6404134fb8c4c43acafc51c, type: 2}
+  currentHealth: 0
+  maxHealth: 0
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChangeValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7008580456251474467}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+        m_MethodName: set_value
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7299719139058094713}
+        m_TargetAssemblyTypeName: EnemyBehavior, Assembly-CSharp
+        m_MethodName: EnemyDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isEnemy: 0
 --- !u!1001 &5904110608985579081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,7 +211,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 805382880526909039, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: HealthCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 2755530286757775710, guid: caa073969610cc54f8f02389724deb71, type: 3}
       propertyPath: m_AnchorMax.x
@@ -240,11 +301,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5263511903701052509, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 805382880526909039, guid: caa073969610cc54f8f02389724deb71, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8155629624436432487}
   m_SourcePrefab: {fileID: 100100000, guid: caa073969610cc54f8f02389724deb71, type: 3}
+--- !u!1 &6540025072941260838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 805382880526909039, guid: caa073969610cc54f8f02389724deb71, type: 3}
+  m_PrefabInstance: {fileID: 5904110608985579081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8155629624436432487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6540025072941260838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47198286671b96b4cab0bacb8af7fb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
 --- !u!114 &7008580456251474467 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3507432866775440490, guid: caa073969610cc54f8f02389724deb71, type: 3}

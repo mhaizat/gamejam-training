@@ -23,6 +23,8 @@ public class BaseHealth : MonoBehaviour, IDamageable
             maxHealth = healthStat.healthPoint;
             currentHealth = maxHealth;
 
+            OnHealthChange?.Invoke();
+            OnHealthChangeValue?.Invoke(currentHealth);
         }
         else
         {

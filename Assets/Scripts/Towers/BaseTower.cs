@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,7 +69,7 @@ public class BaseTower : MonoBehaviour
                 }
 
                 towerAttack.SetAttackTarget(targetUnit.GetComponent<BaseHealth>());
-
+                towerAttack.SetHasTarget = true;
                 break;
 
             case TowerState.Buff:
@@ -90,10 +91,36 @@ public class BaseTower : MonoBehaviour
 
     public void OnTargetLoss()
     {
+        Debug.Log("Calling OnTargetLoss");
 
+        if (towerSensor.TargetList.Count > 1)
+        {
+            targetUnit = towerSensor.TargetList[1];
+            towerSensor.TargetList.RemoveAt(0);
+
+            towerState = TowerState.Attack;
+            UpdateState();
+        }
+        else
+        {
+            towerState = TowerState.Idle;
+        }
     }
 
     public void SetTargetUnit(GameObject unit) => targetUnit = unit;
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="state">None, Idle, SeekingEnemy,Attack, Buff,CoolDown</param>
+    public void SetTowerState(int state)
+    {
+        if (Enum.IsDefined(typeof(TowerState), state))
+        {
+            towerState = (TowerState)state;
+            UpdateState();
+        }
+    }
 
     public enum TowerState
     {
