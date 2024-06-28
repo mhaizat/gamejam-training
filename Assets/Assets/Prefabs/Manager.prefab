@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dae533eed1d3de49afcbb867fa010e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControlsManager: {fileID: 1093572774491329970}
+  inputManager: {fileID: 1093572774491329970}
   enemyPoolManager: {fileID: 7500081023881312976}
   uiManager: {fileID: 0}
   gridManager: {fileID: 9017635139687793661}
@@ -205,6 +205,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b27be492418544e920358911fc69f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyAmount: 0
+  OnCurrencyChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCurrencyNotEnough:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6290128089370081575
 GameObject:
   m_ObjectHideFlags: 0

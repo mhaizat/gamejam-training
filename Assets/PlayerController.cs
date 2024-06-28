@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (managerHub.GetPlayerControlsManager().GetMouseLeftClick() == 1.0f)
+        if (managerHub.GetInputManager().GetMouseLeftClick() == 1.0f)
         {
             HandleTileInput();
         }
