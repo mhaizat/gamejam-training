@@ -31,8 +31,8 @@ public class InputManager : MonoBehaviour
         return playerControls.CameraMovement.Pan.ReadValue<Vector2>();
     }
 
-    //public void GetCameraZoom()
-    //{ 
-    //    return playerControls.CameraMovement.Zoom.ReadValue<float>();
-    //}
+    public float GetCameraZoom()
+    {
+        return playerControls.CameraMovement.Zoom.ReadValue<float>();
+    }
 }
