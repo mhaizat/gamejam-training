@@ -50,6 +50,54 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CameraMovement"",
+            ""id"": ""7993c269-6306-40f6-abab-51dfb73ea14e"",
+            ""actions"": [
+                {
+                    ""name"": ""Pan"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""18abe530-f295-4508-9f1d-a5963b704318"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""15f5f01b-0880-42b7-86f8-5b473e97d864"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": ""Normalize(min=-1,max=1)"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""47992963-4b27-4fe4-b4b8-f56f35ff3b1f"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pan"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2427e2a-655a-4f78-9d6b-c0a48c446100"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -57,6 +105,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_LeftMouseClick = m_Movement.FindAction("LeftMouseClick", throwIfNotFound: true);
+        // CameraMovement
+        m_CameraMovement = asset.FindActionMap("CameraMovement", throwIfNotFound: true);
+        m_CameraMovement_Pan = m_CameraMovement.FindAction("Pan", throwIfNotFound: true);
+        m_CameraMovement_Zoom = m_CameraMovement.FindAction("Zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -160,8 +212,67 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // CameraMovement
+    private readonly InputActionMap m_CameraMovement;
+    private List<ICameraMovementActions> m_CameraMovementActionsCallbackInterfaces = new List<ICameraMovementActions>();
+    private readonly InputAction m_CameraMovement_Pan;
+    private readonly InputAction m_CameraMovement_Zoom;
+    public struct CameraMovementActions
+    {
+        private @PlayerControls m_Wrapper;
+        public CameraMovementActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pan => m_Wrapper.m_CameraMovement_Pan;
+        public InputAction @Zoom => m_Wrapper.m_CameraMovement_Zoom;
+        public InputActionMap Get() { return m_Wrapper.m_CameraMovement; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraMovementActions set) { return set.Get(); }
+        public void AddCallbacks(ICameraMovementActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CameraMovementActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraMovementActionsCallbackInterfaces.Add(instance);
+            @Pan.started += instance.OnPan;
+            @Pan.performed += instance.OnPan;
+            @Pan.canceled += instance.OnPan;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
+        }
+
+        private void UnregisterCallbacks(ICameraMovementActions instance)
+        {
+            @Pan.started -= instance.OnPan;
+            @Pan.performed -= instance.OnPan;
+            @Pan.canceled -= instance.OnPan;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
+        }
+
+        public void RemoveCallbacks(ICameraMovementActions instance)
+        {
+            if (m_Wrapper.m_CameraMovementActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICameraMovementActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CameraMovementActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CameraMovementActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CameraMovementActions @CameraMovement => new CameraMovementActions(this);
     public interface IMovementActions
     {
         void OnLeftMouseClick(InputAction.CallbackContext context);
+    }
+    public interface ICameraMovementActions
+    {
+        void OnPan(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
 }
